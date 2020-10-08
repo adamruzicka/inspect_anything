@@ -1,6 +1,11 @@
 require "inspect_anything/version"
 
 module InspectAnything
-  class Error < StandardError; end
-  # Your code goes here...
+  def io_inspect(label: nil, io: STDOUT)
+    io.write("#{label}: ") if label
+    io.puts(self.inspect)
+    self
+  end
 end
+
+Object.include(InspectAnything)
